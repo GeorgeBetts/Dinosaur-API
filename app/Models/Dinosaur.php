@@ -21,6 +21,7 @@ class Dinosaur extends Model
         'taxon',
         'start_time',
         'end_time',
+        'size_comparison',
         'wikidata_entry',
         'wikipedia_entry',
     ];

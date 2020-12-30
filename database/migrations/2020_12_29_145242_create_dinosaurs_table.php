@@ -16,11 +16,11 @@ class CreateDinosaursTable extends Migration
         Schema::create('dinosaurs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('taxon');
-            $table->dateTime('start_time')->nullable();
-            $table->dateTime('end_time')->nullable();
+            $table->string('taxon')->nullable();
+            $table->string('start_time')->nullable();
+            $table->string('end_time')->nullable();
             $table->string('wikidata_entry', 255);
-            $table->string('wikipedia_entry', 255);
+            $table->string('wikipedia_entry', 255)->nullable();
             $table->timestamps();
         });
     }

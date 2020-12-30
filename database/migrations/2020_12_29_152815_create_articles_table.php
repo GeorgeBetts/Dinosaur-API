@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->foreignId('dinosaur_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->string('url', 1000);
+            $table->string('url', 1500);
             $table->timestamps();
         });
     }
