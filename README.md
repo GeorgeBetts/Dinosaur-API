@@ -46,7 +46,7 @@ You can also filter the Dinosaurs resource using the following parameters:
 | has_article | Bool | Set to true to only return records that have at least one article |
 | has_wikipedia_entry | Bool | Set to true to only return records that have a wikipedia entry |  
 
-For example, to retrieve a list of dinosaurs where their nam contains 'Stego', that have a wikipedia article and at least one image, you would use the following parameters:  
+For example, to retrieve a list of dinosaurs where their name contains 'Stego', that have a wikipedia article and at least one image, you would use the following parameters:  
 ```
 http://localhost/api/dinosaurs?name=Stego&has_wikipedia_entry=true&has_image=true
 ```
