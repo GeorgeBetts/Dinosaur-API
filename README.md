@@ -1,9 +1,48 @@
 
 # Dinosaur API
-This is an API to get information about dinosaurs
-# Data Source
-The data is sourced from Wikidata, the SPARQL query is as follows:
+This is an API to get information about dinosaurs. The API was created using the Laravel framework.
 
+## Getting Started
+If you would like to contribute you can get started with this project by following these instructions:  
+1. Clone the repo
+```sh
+git clone https://github.com/GeorgeBetts/DinosaurAPI.git
+```
+2. Copy the ENV file and generate a key
+```sh
+cp .env.example .env
+php artisan key:generate
+```
+3. Install NPM & Composer packages
+```sh
+npm install
+composer install
+```
+4. Run database migrations and seeder
+```sh
+php artisan migrate
+php artisan db:seed
+```
+
+## Usage
+The API follows standard REST resource structure. The resoures available in the API are:
+* Dinosaur  
+
+To interact with these resources the following endpoints are available:
+
+* GET /resource
+* GET /resource/{id}
+
+E.g. to retrieve a list of Dinosaurs
+```
+http://localhost/api/dinosaurs
+```
+
+## Data Source
+The data for this API is taken from WikiData and is imported to a database via the `DinosaurTableSeeder`, this reads in the raw JSON data from Wikidata which is saved in the project at `database/data/wikidata_dinosaurs.json`  
+The SPARQL query for Wikidata is as follows:
+
+```SQL
     SELECT ?dinosaur ?dinosaurLabel ?taxon ?image ?startTime ?endTime ?gallery ?sizeComparison ?encyclopedia ?article
     WHERE
     {
@@ -24,3 +63,4 @@ The data is sourced from Wikidata, the SPARQL query is as follows:
       }
       ?dinosaur rdfs:label ?dinosaurLabel filter (lang(?dinosaurLabel) = "en") .
     }
+```
