@@ -37,6 +37,27 @@ E.g. to retrieve a list of Dinosaurs
 ```
 http://localhost/api/dinosaurs
 ```
+You can also filter the Dinosaurs resource using the following parameters:  
+| Parameter | Type | Description
+| --- | --- | --- |
+| name | String | Search string to filter by dinosaur name |
+| exact_match | Bool | Set to true if you want all String parameters to be an exact match of your search parameter |
+| has_image | Bool | Set to true to only return records that have at least one image |
+| has_article | Bool | Set to true to only return records that have at least one article |
+| has_wikipedia_entry | Bool | Set to true to only return records that have a wikipedia entry |  
+
+For example, to retrieve a list of dinosaurs where their nam contains 'Stego', that have a wikipedia article and at least one image, you would use the following parameters:  
+```
+http://localhost/api/dinosaurs?name=Stego&has_wikipedia_entry=true&has_image=true
+```
+To retrieve dinosaurs that match the exact name 'Stegosaurus':
+```
+http://localhost/api/dinosaurs?name=Stegosaurus&exact_match=true
+```
+You can also retrieve the Stegosaurus by using it's id:
+```
+http://localhost/api/dinosaurs/6467
+```
 
 ## Data Source
 The data for this API is taken from WikiData and is imported to a database via the `DinosaurTableSeeder`, this reads in the raw JSON data from Wikidata which is saved in the project at `database/data/wikidata_dinosaurs.json`  

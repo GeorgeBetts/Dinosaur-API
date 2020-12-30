@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/dinosaurs', [DinosaurController::class, 'index']);
-Route::get('/dinosaurs/{id}', [DinosaurController::class, 'show']);
+Route::get('/dinosaurs/{dinosaur}', [DinosaurController::class, 'show']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
