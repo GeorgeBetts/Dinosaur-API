@@ -6,7 +6,7 @@ This is an API to get information about dinosaurs. The API was created using the
 If you would like to contribute you can get started with this project by following these instructions:  
 1. Clone the repo
 ```sh
-git clone https://github.com/GeorgeBetts/DinosaurAPI.git
+git clone https://github.com/GeorgeBetts/Dinosaur-API.git
 ```
 2. Copy the ENV file and generate a key
 ```sh
