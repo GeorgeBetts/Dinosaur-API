@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Library\PrehistoricDate;
 use App\Models\Dinosaur;
 use Illuminate\Http\Request;
 
@@ -55,7 +56,29 @@ class DinosaurController extends Controller
             }
         }
 
-        return $dinosaurs->paginate(30);
+        //Retrieve and paginate the data
+        $dinosaurs = $dinosaurs->paginate(30);
+
+        //Transform the data to include human readable dates
+        $dinosaurs->transform(function ($dinosaur, $key) {
+            if (isset($dinosaur->start_time)) {
+                $startTime = new PrehistoricDate($dinosaur->start_time);
+                $dinosaur->start_time_human_readable = $startTime->humanReadable();
+            } else {
+                $dinosaur->start_time_human_readable = null;
+            }
+
+            if (isset($dinosaur->end_time)) {
+                $endTime = new PrehistoricDate($dinosaur->end_time);
+                $dinosaur->end_time_human_readable = $endTime->humanReadable();
+            } else {
+                $dinosaur->end_time_human_readable = null;
+            }
+
+            return $dinosaur;
+        });
+
+        return $dinosaurs;
     }
 
 
