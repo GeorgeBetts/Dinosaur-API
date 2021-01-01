@@ -61,25 +61,7 @@ class DinosaurController extends Controller
 
         //Transform the data to include human readable dates
         $dinosaurs->transform(function ($dinosaur, $key) {
-            if (isset($dinosaur->start_time)) {
-                $startTime = new PrehistoricDate($dinosaur->start_time);
-                $dinosaur->start_time_human_readable = $startTime->humanReadable();
-                $dinosaur->start_period = $startTime->period();
-            } else {
-                $dinosaur->start_time_human_readable = null;
-                $dinosaur->start_period = null;
-            }
-
-            if (isset($dinosaur->end_time)) {
-                $endTime = new PrehistoricDate($dinosaur->end_time);
-                $dinosaur->end_time_human_readable = $endTime->humanReadable();
-                $dinosaur->end_period = $endTime->period();
-            } else {
-                $dinosaur->end_time_human_readable = null;
-                $dinosaur->end_period = null;
-            }
-
-            return $dinosaur;
+            return $this->setDates($dinosaur);
         });
 
         return $dinosaurs;
@@ -94,6 +76,34 @@ class DinosaurController extends Controller
      */
     public function show(Dinosaur $dinosaur)
     {
-        return $dinosaur->load(['images', 'articles']);
+        return $this->setDates($dinosaur->load(['images', 'articles']));
+    }
+
+    /**
+     * Sets dates information on the passed dinosaur
+     *
+     * @param [App\Models\Dinosaur] $dinosaur
+     * @return [Dinosaur]
+     */
+    private function setDates($dinosaur)
+    {
+        if (isset($dinosaur->start_time)) {
+            $startTime = new PrehistoricDate($dinosaur->start_time);
+            $dinosaur->start_time_human_readable = $startTime->humanReadable();
+            $dinosaur->start_period = $startTime->period();
+        } else {
+            $dinosaur->start_time_human_readable = null;
+            $dinosaur->start_period = null;
+        }
+
+        if (isset($dinosaur->end_time)) {
+            $endTime = new PrehistoricDate($dinosaur->end_time);
+            $dinosaur->end_time_human_readable = $endTime->humanReadable();
+            $dinosaur->end_period = $endTime->period();
+        } else {
+            $dinosaur->end_time_human_readable = null;
+            $dinosaur->end_period = null;
+        }
+        return $dinosaur;
     }
 }
