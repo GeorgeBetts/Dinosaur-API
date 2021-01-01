@@ -73,10 +73,10 @@ class DinosaurController extends Controller
             if (isset($dinosaur->end_time)) {
                 $endTime = new PrehistoricDate($dinosaur->end_time);
                 $dinosaur->end_time_human_readable = $endTime->humanReadable();
-                $dinosaur->end_pariod = $endTime->period();
+                $dinosaur->end_period = $endTime->period();
             } else {
                 $dinosaur->end_time_human_readable = null;
-                $dinosaur->end_pariod = null;
+                $dinosaur->end_period = null;
             }
 
             return $dinosaur;
