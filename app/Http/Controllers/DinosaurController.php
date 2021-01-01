@@ -64,15 +64,19 @@ class DinosaurController extends Controller
             if (isset($dinosaur->start_time)) {
                 $startTime = new PrehistoricDate($dinosaur->start_time);
                 $dinosaur->start_time_human_readable = $startTime->humanReadable();
+                $dinosaur->start_period = $startTime->period();
             } else {
                 $dinosaur->start_time_human_readable = null;
+                $dinosaur->start_period = null;
             }
 
             if (isset($dinosaur->end_time)) {
                 $endTime = new PrehistoricDate($dinosaur->end_time);
                 $dinosaur->end_time_human_readable = $endTime->humanReadable();
+                $dinosaur->end_pariod = $endTime->period();
             } else {
                 $dinosaur->end_time_human_readable = null;
+                $dinosaur->end_pariod = null;
             }
 
             return $dinosaur;
