@@ -1,87 +1,66 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-# Dinosaur API
-This is an API to get information about dinosaurs. The API was created using the Laravel framework.
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-## Getting Started
-If you would like to contribute you can get started with this project by following these instructions:  
-1. Clone the repo
-```sh
-git clone https://github.com/GeorgeBetts/Dinosaur-API.git
-```
-2. Copy the ENV file and generate a key
-```sh
-cp .env.example .env
-php artisan key:generate
-```
-3. Install NPM & Composer packages
-```sh
-npm install
-composer install
-```
-4. Run database migrations and seeder
-```sh
-php artisan migrate
-php artisan db:seed
-```
+## About Laravel
 
-## Usage
-The API follows standard REST resource structure. The resoures available in the API are:
-* Dinosaur  
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-To interact with these resources the following endpoints are available:
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-* GET /resource
-* GET /resource/{id}
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-E.g. to retrieve a list of Dinosaurs
-```
-http://localhost/api/dinosaurs
-```
-You can also filter the Dinosaurs resource using the following parameters:  
-| Parameter | Type | Description
-| --- | --- | --- |
-| name | String | Search string to filter by dinosaur name |
-| exact_match | Bool | Set to true if you want all String parameters to be an exact match of your search parameter |
-| has_image | Bool | Set to true to only return records that have at least one image |
-| has_article | Bool | Set to true to only return records that have at least one article |
-| has_wikipedia_entry | Bool | Set to true to only return records that have a wikipedia entry |  
+## Learning Laravel
 
-For example, to retrieve a list of dinosaurs where their name contains 'Stego', that have a wikipedia article and at least one image, you would use the following parameters:  
-```
-http://localhost/api/dinosaurs?name=Stego&has_wikipedia_entry=true&has_image=true
-```
-To retrieve dinosaurs that match the exact name 'Stegosaurus':
-```
-http://localhost/api/dinosaurs?name=Stegosaurus&exact_match=true
-```
-You can also retrieve the Stegosaurus by using it's id:
-```
-http://localhost/api/dinosaurs/6467
-```
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## Data Source
-The data for this API is taken from WikiData and is imported to a database via the `DinosaurTableSeeder`, this reads in the raw JSON data from Wikidata which is saved in the project at `database/data/wikidata_dinosaurs.json`  
-The SPARQL query for Wikidata is as follows:
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-```SQL
-    SELECT ?dinosaur ?dinosaurLabel ?taxon ?image ?startTime ?endTime ?gallery ?sizeComparison ?encyclopedia ?article
-    WHERE
-    {
-      ?dinosaur wdt:P31 wd:Q23038290;
-                wdt:P18 ?image.
-      MINUS {
-        ?dinosaur wdt:p171 wdt:Q171283.  
-      }
-      OPTIONAL { ?dinosaur wdt:P225 ?taxon. }
-      OPTIONAL { ?dinosaur wdt:P580 ?startTime. }
-      OPTIONAL { ?dinosaur wdt:P582 ?endTime. }
-      OPTIONAL { ?dinosaur wdt:P8512 ?sizeComparison. }
-      OPTIONAL { ?dinosaur wdt:P1417 ?encyclopedia. }
-      OPTIONAL {
-          ?article schema:about ?dinosaur .
-          ?article schema:inLanguage "en" .
-          ?article schema:isPartOf <https://en.wikipedia.org/> .
-      }
-      ?dinosaur rdfs:label ?dinosaurLabel filter (lang(?dinosaurLabel) = "en") .
-    }
-```
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+
+## Laravel Sponsors
+
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+
+### Premium Partners
+
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+
+## Code of Conduct
+
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
