@@ -21,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
+            if (false === method_exists($notifiable, 'getEmailForPasswordReset')) {
+                throw new \Exception('Method getEmailForPasswordReset does not exist');
+            }
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
     }
