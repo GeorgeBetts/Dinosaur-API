@@ -15,7 +15,7 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
-        if (!$request->user() instanceof MustVerifyEmail) {
+        if (! $request->user() instanceof MustVerifyEmail) {
             abort(403, 'Email not verified.');
         }
 

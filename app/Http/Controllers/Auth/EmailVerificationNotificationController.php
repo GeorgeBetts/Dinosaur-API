@@ -15,7 +15,7 @@ class EmailVerificationNotificationController extends Controller
      */
     public function store(Request $request): JsonResponse|RedirectResponse
     {
-        if (!$request->user() instanceof MustVerifyEmail) {
+        if (! $request->user() instanceof MustVerifyEmail) {
             abort(403, 'Email must be verified.');
         }
 
