@@ -7,6 +7,5 @@ parameters:
     paths:
         - app
         - routes
-    checkMissingIterableValueType: false
     strictRules:
-        strictCalls: false
+        dynamicCallOnStaticMethod: false
