@@ -4,48 +4,49 @@ namespace App\Http\Controllers;
 
 use App\Models\Dinosaur;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class DinosaurController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
-        $dinosaurs = Dinosaur::with(['images']);
+        $dinosaurs = Dinosaur::with(['images', 'articles']);
 
-        //Set whether searches on string fields will be 'like' or '=' (exact match)
+        // Set whether searches on string fields will be 'like' or '=' (exact match)
         $whereOperator = 'like';
-        if ($request->has('exact_match') && $request->exact_match === 'true') {
+        if ($request->boolean('exact_match', false) === true) {
             $whereOperator = '=';
         }
 
-        //Filter on dinosaur name
+        // Filter on dinosaur name
         if ($request->has('name')) {
-            $nameSearch = ($whereOperator == '=') ? $request->name : '%' . $request->name . '%';
+            $nameSearch = ($whereOperator === '=') ? $request->name : '%'.$request->name.'%';
             $dinosaurs->where('name', $whereOperator, $nameSearch);
         }
 
-        if ($request->input('has_wikipedia_entry', false) === true) {
+        if ($request->boolean('has_wikipedia_entry', false) === true) {
             $dinosaurs->hasWikipediaEntry();
         }
 
-        if ($request->input('has_image', false) === true) {
+        if ($request->boolean('has_image', false) === true) {
             $dinosaurs->hasImages();
         }
 
-        if ($request->input('has_article', false) === true) {
+        if ($request->boolean('has_article', false) === true) {
             $dinosaurs->hasArticles();
         }
 
-        return $dinosaurs->paginate(30);
+        return response($dinosaurs->paginate(30));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Dinosaur $dinosaur)
+    public function show(Dinosaur $dinosaur): Response
     {
-        return $dinosaur->load(['images', 'articles']);
+        return response($dinosaur->load(['images', 'articles']));
     }
 }
