@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -34,5 +35,20 @@ class Dinosaur extends Model
     public function images(): HasMany
     {
         return $this->hasMany(Image::class);
+    }
+
+    public function scopeHasWikipediaEntry(Builder $query): Builder
+    {
+        return $query->whereNotNull('wikipedia_entry');
+    }
+
+    public function scopeHasImages(Builder $query): Builder
+    {
+        return $query->has('images');
+    }
+
+    public function scopeHasArticles(Builder $query): Builder
+    {
+        return $query->has('articles');
     }
 }
