@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dinosaur;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Routing\Controller;
 
 class DinosaurController extends Controller
 {
