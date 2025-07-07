@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dinosaur;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 
@@ -11,8 +12,10 @@ class DinosaurController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @throws \Throwable
      */
-    public function index(Request $request): Response
+    public function index(Request $request): ResourceCollection
     {
         $dinosaurs = Dinosaur::with(['images', 'articles']);
 
@@ -40,7 +43,7 @@ class DinosaurController extends Controller
             $dinosaurs->hasArticles();
         }
 
-        return response($dinosaurs->paginate(30));
+        return $dinosaurs->paginate(30)->toResourceCollection();
     }
 
     /**
