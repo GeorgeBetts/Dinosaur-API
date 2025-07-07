@@ -2,26 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\Dinosaur;
-use Illuminate\Database\Eloquent\Model;
+use Database\Factories\ArticleFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Article extends Model
 {
-    use HasFactory;
-
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @use HasFactory<ArticleFactory>
      */
+    use HasFactory, HasUuids;
+
     protected $fillable = [
-        'dinosaur_id',
-        'name',
+        'title',
         'url',
+        'dinosaur_id',
     ];
 
-    public function dinosaur()
+    /**
+     * @return BelongsTo<Dinosaur, $this>
+     */
+    public function dinosaur(): BelongsTo
     {
         return $this->belongsTo(Dinosaur::class);
     }

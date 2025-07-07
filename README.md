@@ -3,7 +3,7 @@
 This is an API to get information about dinosaurs. The API was created using the Laravel framework.
 
 ## Getting Started
-If you would like to contribute you can get started with this project by following these instructions:  
+If you would like to contribute you can get started with this project by following these instructions:
 1. Clone the repo
 ```sh
 git clone https://github.com/GeorgeBetts/Dinosaur-API.git
@@ -26,7 +26,7 @@ php artisan db:seed
 
 ## Usage
 The API follows standard REST resource structure. The resoures available in the API are:
-* Dinosaur  
+* Dinosaur
 
 To interact with these resources the following endpoints are available:
 
@@ -44,9 +44,9 @@ You can also filter the Dinosaurs resource using the following parameters:
 | exact_match | Bool | Set to true if you want all String parameters to be an exact match of your search parameter |
 | has_image | Bool | Set to true to only return records that have at least one image |
 | has_article | Bool | Set to true to only return records that have at least one article |
-| has_wikipedia_entry | Bool | Set to true to only return records that have a wikipedia entry |  
+| has_wikipedia_entry | Bool | Set to true to only return records that have a wikipedia entry |
 
-For example, to retrieve a list of dinosaurs where their name contains 'Stego', that have a wikipedia article and at least one image, you would use the following parameters:  
+For example, to retrieve a list of dinosaurs where their name contains 'Stego', that have a wikipedia article and at least one image, you would use the following parameters:
 ```
 http://localhost/api/dinosaurs?name=Stego&has_wikipedia_entry=true&has_image=true
 ```
